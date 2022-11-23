@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static  'temp.css' %}">
+</head>
+
+<body>
+<div class="left">
+    <h3>Menu</h3>
+    {% block urls %}{% endblock %}
+</div>
+<div class="right">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

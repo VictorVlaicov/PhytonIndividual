@@ -1,0 +1,66 @@
+{% extends 'main/basic.html' %}
+{% block title %}Main{% endblock %}
+{% block urls %}
+    <ul>
+        <a href={% url 'sorted' %}>
+            <li>Sort by timedate</li>
+        </a>
+        <a href={% url 'ap' %}>
+            <li>Show apartments</li>
+        </a>
+    </ul>
+{% endblock %}
+{% block content %}
+    {% for r in reviews %}
+
+        <table>
+            <tr>
+                <td>Review ID</td>
+                <td>{{ r.id }}</td>
+            </tr>
+            <tr>
+                <td>Client</td>
+                <td>{{ r.client.firstName }}</td>
+                <td>{{ r.client.lastName }}</td>
+                <td>{{ r.client.email }}</td>
+            </tr>
+            <tr>
+                <td>Apartment:</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Address:</td>
+                <td>{{ r.apartment.address }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Area:</td>
+                <td>{{ r.apartment.area }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Floor:</td>
+                <td>{{ r.apartment.floorNumber }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Rooms:</td>
+                <td>{{ r.apartment.roomCount }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Price:</td>
+                <td>{{ r.apartment.price }}</td>
+            </tr>
+        </table>
+        <div>
+            <p>Content:</p>
+            <p>{{ r.content }}</p>
+            <p>Date:</p>
+            <p>{{ r.datetime }}</p>
+            <hr>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

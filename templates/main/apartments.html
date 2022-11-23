@@ -1,0 +1,59 @@
+{% extends 'main/basic.html' %}
+{% block title %}Apartments{% endblock %}
+{% block urls %}
+    <ul>
+        <a href={% url 'ap_sorted' %}>
+            <li>Sort by price</li>
+        </a>
+        <a href={% url 'main' %}>
+            <li>Main page</li>
+        </a>
+    </ul>
+{% endblock %}
+{% block content %}
+    {% for a in apartments %}
+    <table>
+        <tr>
+            <td>Apartment ID</td>
+            <td>{{ a.id }}</td>
+
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{ a.address }}</td>
+        </tr>
+        <tr>
+            <td>Area</td>
+            <td>{{ a.area }}</td>
+        </tr>
+        <tr>
+            <td>Floor number</td>
+            <td>{{ a.floorNumber }}</td>
+        </tr>
+        <tr>
+            <td>Room count</td>
+            <td>{{ a.roomCount }}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{ a.price }}</td>
+        </tr>
+    </table>
+    <div class="input_form">
+        <p>Write a review</p>
+        <form action="{% url  'save_review' %}" method="post">
+            <label>Enter apartment ID</label>
+            <input type="text" name="ap_id"/><br>
+            <label>Enter your name</label>
+            <input type="text" name="clientFirstName"/><br>
+            <label>Enter your surname</label>
+            <input type="text" name="clientLastName"/><br>
+            <label>Enter your email</label>
+            <input type="text" name="clientEmail"/><br>
+            <label>Enter your review</label>
+            <input type="text" name="content"><br>
+            <button>Submit</button>
+        </form>
+    </div>
+    {% endfor %}
+{% endblock %}
