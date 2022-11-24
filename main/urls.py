@@ -9,7 +9,6 @@ urlpatterns = [
     path('sorted/', main_sorted, name='sorted'),
     path('ap_sorted/', sort_ap, name='ap_sorted'),
     path('save_review/', add_review, name='save_review'),
-
-    #path('apartments/<int: ap_id>', ap_detail, name='detail'),
+    path('apartment/<int:ap_id>/', ap_detail, name='detail'),
 ]
 
