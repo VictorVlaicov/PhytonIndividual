@@ -32,6 +32,7 @@ div .left ul li {
 .right {
     float: right;
     width: 70%;
+    padding-left: 10px;
     border-left: 5px solid;
 }
 

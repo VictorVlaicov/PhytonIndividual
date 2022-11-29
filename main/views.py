@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -58,3 +58,4 @@ def add_review(request):
     review.save()
     reviews = Review.objects.all()
     return render(request, 'main/main.html', {'reviews': reviews})
+

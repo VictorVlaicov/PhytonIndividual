@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block title %}Main{% endblock %}
 {% block urls %}
     <ul>
@@ -31,27 +32,27 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td rowspan="5"><img src="{% static 'img/icon.png' %}" alt="Apartment"></td>
                 <td>Address:</td>
                 <td>{{ r.apartment.address }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Area:</td>
                 <td>{{ r.apartment.area }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Floor:</td>
                 <td>{{ r.apartment.floorNumber }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Rooms:</td>
                 <td>{{ r.apartment.roomCount }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Price:</td>
                 <td>{{ r.apartment.price }}</td>
             </tr>

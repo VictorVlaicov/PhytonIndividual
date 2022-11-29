@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 
 from .views import main, apartments, main_sorted, sort_ap, ap_detail, add_review, default
@@ -12,3 +14,8 @@ urlpatterns = [
     path('apartment/<int:ap_id>/', ap_detail, name='detail'),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )
