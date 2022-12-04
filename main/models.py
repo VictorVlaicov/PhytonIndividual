@@ -7,6 +7,7 @@ class Apartment(models.Model):
     floorNumber = models.IntegerField('floorNumber')
     roomCount = models.IntegerField('roomCount')
     price = models.FloatField('price')
+    picture = models.CharField('picture', max_length=100)
 
     class Meta:
         verbose_name = 'Apartment'
