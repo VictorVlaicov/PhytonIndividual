@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -36,7 +36,8 @@ def ap_detail(request, ap_id):
         apartment = Apartment.objects.get(id=ap_id)
     except:
         raise Http404('Apartment not found')
-    return render(request, 'main/apartments.html', {'apartments': apartment})
+    apartment_list = [apartment]
+    return render(request, 'main/apartments.html', {'apartments': apartment_list})
 
 
 @csrf_exempt
@@ -45,15 +46,11 @@ def add_review(request):
         a = Apartment.objects.get(id=request.POST['ap_id'])
     except:
         raise Http404('Apartment not found')
-    client = Client(
-        firstName=request.POST['clientFirstName'],
-        lastName=request.POST['clientLastName'],
-        email=request.POST['clientEmail']
-    )
-    # if client.objects.get(client.id) is None:
-    client.save()
+    client = Client.objects.get_or_create(firstName=request.POST['clientFirstName'],
+                                          lastName=request.POST['clientLastName'],
+                                          email=request.POST['clientEmail'])
     review = Review(
-        client=client,
+        client=client[0],
         apartment=a,
         content=request.POST['content'],
         datetime=timezone.datetime.now()
@@ -61,3 +58,4 @@ def add_review(request):
     review.save()
     reviews = Review.objects.all()
     return render(request, 'main/main.html', {'reviews': reviews})
+

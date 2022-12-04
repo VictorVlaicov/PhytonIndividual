@@ -1,18 +1,13 @@
-{% extends 'main/basic.html' %}
+{% extends 'main/base.html' %}
+{% load static %}
 {% block title %}Main{% endblock %}
 {% block urls %}
-    <ul>
-        <a href={% url 'sorted' %}>
-            <li>Sort by timedate</li>
-        </a>
-        <a href={% url 'ap' %}>
-            <li>Show apartments</li>
-        </a>
-    </ul>
+    <a href={% url 'sorted' %}>Sort by timedate</a>
+    <br>
+    <a href={% url 'ap' %}>Show apartments</a>
 {% endblock %}
 {% block content %}
     {% for r in reviews %}
-
         <table>
             <tr>
                 <td>Review ID</td>
@@ -26,29 +21,32 @@
             </tr>
             <tr>
                 <td>Apartment:</td>
+                <td>
+                    <a href="{% url 'detail' r.apartment.id %}" style="text-decoration: none">Click to visit</a>
+                </td>
             </tr>
             <tr>
-                <td></td>
+                <td rowspan="5"><img src="{% static 'img/icon.png' %}" alt="Apartment"></td>
                 <td>Address:</td>
                 <td>{{ r.apartment.address }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Area:</td>
                 <td>{{ r.apartment.area }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Floor:</td>
                 <td>{{ r.apartment.floorNumber }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Rooms:</td>
                 <td>{{ r.apartment.roomCount }}</td>
             </tr>
             <tr>
-                <td></td>
+
                 <td>Price:</td>
                 <td>{{ r.apartment.price }}</td>
             </tr>
@@ -60,7 +58,5 @@
             <p>{{ r.datetime }}</p>
             <hr>
         </div>
-
     {% endfor %}
-
 {% endblock %}

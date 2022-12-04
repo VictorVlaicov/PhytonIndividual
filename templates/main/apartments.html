@@ -1,9 +1,10 @@
-{% extends 'main/basic.html' %}
+{% extends 'main/base.html' %}
+{% load static %}
 {% block title %}Apartments{% endblock %}
 {% block urls %}
     <ul>
         <a href={% url 'ap_sorted' %}>
-            <li>Sort by price</li>
+            <li>Sorted by price</li>
         </a>
         <a href={% url 'main' %}>
             <li>Main page</li>
@@ -17,6 +18,9 @@
             <td>Apartment ID</td>
             <td>{{ a.id }}</td>
 
+        </tr>
+        <tr>
+            <img style="width: 600px;height: 400px;" src="{% static a.picture %}" alt="">
         </tr>
         <tr>
             <td>Address</td>
@@ -39,6 +43,7 @@
             <td>{{ a.price }}</td>
         </tr>
     </table>
+    {% endfor %}
     <div class="input_form">
         <p>Write a review</p>
         <form action="{% url  'save_review' %}" method="post">
@@ -55,5 +60,4 @@
             <button>Submit</button>
         </form>
     </div>
-    {% endfor %}
 {% endblock %}
